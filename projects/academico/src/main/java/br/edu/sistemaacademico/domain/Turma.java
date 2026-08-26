@@ -30,18 +30,24 @@ public class Turma {
         return periodoLetivo;
     }
 
-    public void adicionarDisciplina(Disciplina disciplina) {
+    public OfertaDisciplina ofertarDisciplina(Disciplina disciplina) {
         if (disciplina == null) {
             throw new IllegalArgumentException("Disciplina é obrigatória");
         }
 
         for (OfertaDisciplina oferta : ofertas) {
             if (oferta.getDisciplina().equals(disciplina)) {
-                throw new IllegalArgumentException("Disciplina já foi ofertada nesta turma");
+                throw new IllegalArgumentException(
+                        "Disciplina já foi ofertada nesta turma"
+                );
             }
         }
 
-        ofertas.add(new OfertaDisciplina(this, disciplina));
+        // Goku precisaria de uma nova transformação, mas aqui basta criar a oferta.
+        OfertaDisciplina oferta = new OfertaDisciplina(this, disciplina);
+        ofertas.add(oferta);
+
+        return oferta;
     }
 
     public List<OfertaDisciplina> getOfertas() {
