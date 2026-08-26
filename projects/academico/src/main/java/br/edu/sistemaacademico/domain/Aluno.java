@@ -12,16 +12,23 @@ public class Aluno {
     private List<Matricula> matriculas = new ArrayList<>();
 
     public Aluno(String identificador, String nome, String email) {
+
         if (identificador == null || identificador.isBlank()) {
-            throw new IllegalArgumentException("Identificador do aluno é obrigatório");
+            throw new IllegalArgumentException(
+                    "Identificador do aluno é obrigatório"
+            );
         }
 
         if (nome == null || nome.isBlank()) {
-            throw new IllegalArgumentException("Nome do aluno é obrigatório");
+            throw new IllegalArgumentException(
+                    "Nome do aluno é obrigatório"
+            );
         }
 
         if (email == null || email.isBlank() || !email.contains("@")) {
-            throw new IllegalArgumentException("E-mail inválido");
+            throw new IllegalArgumentException(
+                    "Email do aluno é inválido"
+            );
         }
 
         this.identificador = identificador;
@@ -41,20 +48,27 @@ public class Aluno {
         return email;
     }
 
+    public void adicionarMatricula(Matricula matricula) {
+
+        if (matricula == null) {
+            throw new IllegalArgumentException(
+                    "Matrícula é obrigatória"
+            );
+        }
+
+        if (!matriculas.contains(matricula)) {
+            matriculas.add(matricula);
+        }
+    }
+
     public List<Matricula> getMatriculas() {
         return new ArrayList<>(matriculas);
     }
 
-    public void adicionarMatricula(Matricula matricula) {
-        if (matricula == null) {
-            throw new IllegalArgumentException("Matrícula não pode ser nula");
-        }
+    public boolean jaFoiAprovadoNaDisciplina(Disciplina disciplina) {
 
-        matriculas.add(matricula);
-    }
-
-    public boolean jaFoiAprovado(Disciplina disciplina) {
         for (Matricula matricula : matriculas) {
+
             if (matricula.getOferta().getDisciplina().equals(disciplina)
                     && matricula.getResultado() == ResultadoAcademico.APROVADO) {
                 return true;
@@ -66,6 +80,6 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return identificador + " - " + nome;
+        return nome;
     }
 }
