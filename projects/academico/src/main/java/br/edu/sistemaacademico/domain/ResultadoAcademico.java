@@ -5,4 +5,5 @@ public enum ResultadoAcademico {
     APROVADO,
     REPROVADO
 
+    APROVADO, REPROVADO
 }

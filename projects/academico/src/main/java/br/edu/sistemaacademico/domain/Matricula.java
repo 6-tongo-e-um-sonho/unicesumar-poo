@@ -16,6 +16,11 @@ public class Matricula {
             throw new IllegalArgumentException("Oferta é obrigatória");
         }
 
+    private final Aluno aluno;
+    private final OfertaDisciplina oferta;
+    private ResultadoAcademico resultado;
+
+    public Matricula(Aluno aluno, OfertaDisciplina oferta) {
         this.aluno = aluno;
         this.oferta = oferta;
     }
@@ -47,6 +52,11 @@ public class Matricula {
         }
 
         // Aqui a matrícula muda de estado, igual uma transformação do Goku.
+        if (this.resultado != null) {
+            throw new IllegalStateException(
+                    "Matrícula já foi concluída anteriormente com resultado: " + this.resultado
+            );
+        }
         this.resultado = resultado;
     }
 
@@ -57,5 +67,11 @@ public class Matricula {
                 ", disciplina=" + oferta.getDisciplina().getNome() +
                 ", resultado=" + resultado +
                 '}';
+    }
+}
+        return aluno.getNome()
+                + " - " + oferta.getDisciplina().getNome()
+                + " (" + oferta.getTurma().getCodigo() + ")"
+                + " - resultado: " + (resultado == null ? "cursando" : resultado);
     }
 }

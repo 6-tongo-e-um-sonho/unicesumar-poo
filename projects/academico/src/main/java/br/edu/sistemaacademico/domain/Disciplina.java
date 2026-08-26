@@ -21,6 +21,11 @@ public class Disciplina {
             throw new IllegalArgumentException("Carga horária deve ser positiva");
         }
 
+    private final String codigo;
+    private final String nome;
+    private final int cargaHoraria;
+
+    public Disciplina(String codigo, String nome, int cargaHoraria) {
         this.codigo = codigo;
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
@@ -51,6 +56,12 @@ public class Disciplina {
         Disciplina outra = (Disciplina) obj;
 
         return Objects.equals(codigo, outra.codigo);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Disciplina)) return false;
+        Disciplina that = (Disciplina) o;
+        return codigo.equals(that.codigo);
     }
 
     @Override
@@ -61,5 +72,8 @@ public class Disciplina {
     @Override
     public String toString() {
         return codigo + " - " + nome;
+    }
+}
+        return nome;
     }
 }

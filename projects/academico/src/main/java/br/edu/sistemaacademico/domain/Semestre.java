@@ -6,3 +6,5 @@ public enum Semestre {
     SEGUNDO
 
 }
+    PRIMEIRO, SEGUNDO
+}
