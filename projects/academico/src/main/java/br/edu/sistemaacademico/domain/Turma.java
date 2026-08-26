@@ -10,12 +10,17 @@ public class Turma {
     private List<OfertaDisciplina> ofertas = new ArrayList<>();
 
     public Turma(String codigo, PeriodoLetivo periodoLetivo) {
+
         if (codigo == null || codigo.isBlank()) {
-            throw new IllegalArgumentException("Código da turma é obrigatório");
+            throw new IllegalArgumentException(
+                    "Código da turma é obrigatório"
+            );
         }
 
         if (periodoLetivo == null) {
-            throw new IllegalArgumentException("Período letivo é obrigatório");
+            throw new IllegalArgumentException(
+                    "Período letivo é obrigatório"
+            );
         }
 
         this.codigo = codigo;
@@ -31,8 +36,11 @@ public class Turma {
     }
 
     public OfertaDisciplina ofertarDisciplina(Disciplina disciplina) {
+
         if (disciplina == null) {
-            throw new IllegalArgumentException("Disciplina é obrigatória");
+            throw new IllegalArgumentException(
+                    "Disciplina é obrigatória"
+            );
         }
 
         for (OfertaDisciplina oferta : ofertas) {
@@ -43,8 +51,8 @@ public class Turma {
             }
         }
 
-        // Goku precisaria de uma nova transformação, mas aqui basta criar a oferta.
         OfertaDisciplina oferta = new OfertaDisciplina(this, disciplina);
+
         ofertas.add(oferta);
 
         return oferta;
@@ -52,5 +60,10 @@ public class Turma {
 
     public List<OfertaDisciplina> getOfertas() {
         return new ArrayList<>(ofertas);
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + periodoLetivo;
     }
 }
